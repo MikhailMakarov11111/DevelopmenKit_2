@@ -1,15 +1,16 @@
 package org.example;
 
-import static org.example.PairUtil.concatOrSum;
+import org.example.client.ClientController;
+import org.example.client.ClientGUI;
+import org.example.server.FileStorage;
+import org.example.server.ServerController;
+import org.example.server.ServerWindow;
 
 public class Main {
     public static void main(String[] args) {
-        Pair<Integer, Integer> intPair = new Pair<>(3, 5);
-        Pair<Double, Double> doublePair = new Pair<>(2.5, 3.5);
-        Pair<String, String> stringPair = new Pair<>("Привет", "Олег");
 
-        System.out.println("Сумма целых чисел: " + concatOrSum(intPair));
-        System.out.println("Сумма дробных числе: " + concatOrSum(doublePair));
-        System.out.println("Текст из объединенных строк: " + concatOrSum(stringPair));
+        ServerController serverController = new ServerController(new ServerWindow(), new FileStorage());
+        new ClientController(new ClientGUI(), serverController);
+        new ClientController(new ClientGUI(), serverController);
     }
 }
